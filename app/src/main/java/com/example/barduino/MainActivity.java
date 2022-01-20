@@ -12,13 +12,11 @@ import android.widget.Toast;
 
 import com.example.barduino.bottle.Bottle;
 import com.example.barduino.bottle.BottleList;
-import com.example.barduino.bottle.BottleView;
 import com.example.barduino.drink.Drink;
 import com.example.barduino.drink.DrinkAdapter;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import static android.content.ContentValues.TAG;
 
@@ -30,7 +28,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ArrayList<Bottle> bottles = new ArrayList<Bottle>();
-        bottles.add(new Bottle("Vodka", 1,R.drawable.vodka));
+        bottles.add(new Bottle("Vodka", 1,R.drawable.bottle_vodka));
+        bottles.add(new Bottle("Jager", 2,R.drawable.bottle_jager));
+        bottles.add(new Bottle("Rum", 3,R.drawable.bottle_rum));
+        bottles.add(new Bottle("Champagne", 4,R.drawable.bottle_champagne));
+        bottles.add(new Bottle("Whiskey", 5,R.drawable.bottle_whiskey));
+        bottles.add(new Bottle("Gin", 6,R.drawable.bottle_gin));
         final BottleList bottleList= new BottleList(bottles);
 
         final ArrayList<Drink> drinks = new ArrayList<Drink>();

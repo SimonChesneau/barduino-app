@@ -4,18 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.barduino.R;
 
-import java.util.ArrayList;
-
-public class BottleAdapter extends BaseAdapter {
+public class BottleAdapter extends BaseAdapter{
     private BottleList listBottle;
     private Context context;
     private LayoutInflater inflater;
@@ -53,30 +49,27 @@ public class BottleAdapter extends BaseAdapter {
         ImageButton bottleditbtn = (ImageButton)view.findViewById(R.id.editbottle);
         final EditText bottlename = (EditText)view.findViewById(R.id.bottlename);
         final EditText bottlenumber = (EditText)view.findViewById(R.id.bottlenumber);
+        ImageView image = view.findViewById(R.id.bottleimage);
+
+        bottlename.setText(listBottle.get(position).getBottlename());
+        bottlenumber.setText(String.valueOf(listBottle.get(position).getBottleposition()));
+        image.setImageResource(listBottle.get(position).getImg());
+
+
         bottleditbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(bottlename.isEnabled()){
-                    //bottlenumber.setEnabled(false);
-                    listBottle.set(Integer.parseInt(bottlenumber.getText().toString())-1, new Bottle(bottlename.getText().toString(),Integer.parseInt(bottlenumber.getText().toString()), R.drawable.vodka));
+                    bottlenumber.setEnabled(false);
                     bottlename.setEnabled(false);
+                    listBottle.set(Integer.parseInt(bottlenumber.getText().toString())-1, new Bottle(bottlename.getText().toString(),Integer.parseInt(bottlenumber.getText().toString()), R.drawable.bottle_vodka));
                 }else{
                     bottlename.setEnabled(true);
- //                   bottlename.requestFocus();
-   //                 bottlename.setCursorVisible(true);
-//                    bottlename.selectAll();
-                    //bottlenumber.setEnabled(true);
+                    bottlenumber.setEnabled(true);
                 }
             }
         });
 
-        TextView name = (TextView) view.findViewById(R.id.bottlename);
-        TextView number = (TextView) view.findViewById(R.id.bottlenumber);
-        ImageView image = (ImageView) view.findViewById(R.id.bottleimage);
-
-        name.setText(listBottle.get(position).getBottlename());
-        number.setText(String.valueOf(listBottle.get(position).getBottleposition()));
-        image.setImageResource(listBottle.get(position).getImg());
 
         return view;
 

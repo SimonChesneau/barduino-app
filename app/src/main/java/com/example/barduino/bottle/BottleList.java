@@ -28,7 +28,7 @@ public class BottleList{
         return this.bottleList.get(position);
     }
 
-    public void set(int i, Bottle bottle) {
-        this.bottleList.set(i,bottle);
+    public void set(int position, Bottle bottle) {
+        this.bottleList.set(position,bottle);
     }
 }
