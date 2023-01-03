@@ -63,6 +63,8 @@ public class BottleAdapter extends BaseAdapter{
                     bottlenumber.setEnabled(false);
                     bottlename.setEnabled(false);
                     listBottle.set(Integer.parseInt(bottlenumber.getText().toString())-1, new Bottle(bottlename.getText().toString(),Integer.parseInt(bottlenumber.getText().toString()), R.drawable.bottle_vodka));
+                    System.out.println(Integer.parseInt(bottlenumber.getText().toString())-1);
+                    System.out.println(new Bottle(bottlename.getText().toString(),Integer.parseInt(bottlenumber.getText().toString()), R.drawable.bottle_vodka).toString());
                 }else{
                     bottlename.setEnabled(true);
                     bottlenumber.setEnabled(true);

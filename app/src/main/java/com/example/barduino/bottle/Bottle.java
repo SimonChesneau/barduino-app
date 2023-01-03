@@ -35,4 +35,8 @@ public class Bottle {
     public void setImg(Integer img) {
         this.img = img;
     }
+
+    public String toString(){
+        return "Bottlename: "+bottlename+"Bottleposition: "+bottleposition;
+    }
 }
