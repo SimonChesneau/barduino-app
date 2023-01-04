@@ -2,6 +2,8 @@
 <p align="center">
   A mobile application to control an automated cocktail machine based on arduino.
   <br>
+    <a href="https://hippie.cat/post/Project/arduino-cocktail-bar">project blog article</a>
+  <br>
   <i>
     Warning: this repo is still under developpement and is not stable at all. Feel free to contribute if you want to help.
   </i>
