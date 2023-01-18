@@ -7,7 +7,6 @@ public class Drink {
 
     private String name;
     private Map<String, Double> ingredient;
-
     private Integer img;
 
     public Drink(String name, String[] ingredientname, Double[] ingredientqty, Integer img) {

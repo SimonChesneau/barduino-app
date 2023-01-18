@@ -18,7 +18,7 @@ public class DrinkAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
 
-    public DrinkAdapter (Context context, ArrayList<Drink> list) {
+    public DrinkAdapter(Context context, ArrayList<Drink> list) {
         this.context = context;
         listDrink = list;
         inflater = LayoutInflater.from(context);
