@@ -19,16 +19,16 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        Button backbtn = (Button)findViewById(R.id.back);
+        Button backbtn = (Button)findViewById(R.id.back); //Create a button to finish the activity
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        }); //Finishing the activity of the button is pressed
 
 
-        ImageButton bottlesettingsbtn = (ImageButton)findViewById(R.id.bottle);
+        ImageButton bottlesettingsbtn = (ImageButton)findViewById(R.id.bottle); //Creating a bottle button to start a new activity
         bottlesettingsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +40,6 @@ public class Settings extends Activity {
                 i.putExtra("bottleList", bottlelist);
                 startActivity(i);**/
             }
-        });
+        }); //Start a new activity based on this one and the bottleView activity
     }
 }
