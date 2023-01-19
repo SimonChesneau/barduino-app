@@ -25,6 +25,12 @@ public class Drink {
         this.img = img;
     }
 
+    public Drink(String name, Map<Bottle, Double> ingredients, Integer img) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.img = img;
+    }
+
     public Drink(String name, String[] ingredientsName, Double[] ingredientsQty, Integer img) {
         this.name = name;
         this.ingredients = new LinkedHashMap<Bottle, Double>();
