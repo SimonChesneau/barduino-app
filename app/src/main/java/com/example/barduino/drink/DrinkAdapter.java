@@ -11,14 +11,15 @@ import android.widget.TextView;
 import com.example.barduino.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DrinkAdapter extends BaseAdapter {
 
-    private ArrayList<Drink> listDrink;
+    private List<Drink> listDrink;
     private Context context;
     private LayoutInflater inflater;
 
-    public DrinkAdapter(Context context, ArrayList<Drink> list) {
+    public DrinkAdapter(Context context, List<Drink> list) {
         this.context = context;
         listDrink = list;
         inflater = LayoutInflater.from(context);

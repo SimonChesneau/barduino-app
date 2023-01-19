@@ -1,15 +1,16 @@
 package com.example.barduino.bottle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BottleList{
-    private ArrayList<Bottle> bottleList;
+    private List<Bottle> bottleList;
 
-    public BottleList(ArrayList<Bottle> bottleList) {
+    public BottleList(List<Bottle> bottleList) {
         this.bottleList = bottleList;
     }
 
-    public ArrayList<Bottle> getBottleList() {
+    public List<Bottle> getBottleList() {
         return bottleList;
     }
 
@@ -24,6 +25,7 @@ public class BottleList{
     public int size(){
         return this.bottleList.size();
     }
+
     public Bottle get(int position){
         return this.bottleList.get(position);
     }
