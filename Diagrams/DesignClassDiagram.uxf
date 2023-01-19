@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>8</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1128</x>
-      <y>496</y>
-      <w>360</w>
-      <h>272</h>
+      <x>1050</x>
+      <y>380</y>
+      <w>225</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>Bottle
 --
@@ -18,10 +18,10 @@
 --
 + Bottle(String bottlename, int bottleposition, Integer img)
 + Bottle(long id, String bottlename, int bottleposition, Integer img)
-+ getBottlename(): String
-+ setBottlename(String bottlename): void
-+ getBottleposition(): int
-+ setBottleposition(int bottleposition): void
++ getName(): String
++ setName(String bottlename): void
++ getPosition(): int
++ setPosition(int bottleposition): void
 + getImg(): Integer
 + setImg(Integer img): void
 + getId(): int
@@ -32,10 +32,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>952</x>
-      <y>288</y>
-      <w>376</w>
-      <h>176</h>
+      <x>940</x>
+      <y>250</y>
+      <w>235</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>BottleAdapter
 --
@@ -54,18 +54,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>864</x>
-      <y>496</y>
-      <w>256</w>
-      <h>176</h>
+      <x>885</x>
+      <y>380</y>
+      <w>160</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>BottleList
 --
-- ArrayList&lt;Bottle&gt;: bottleList
+- List&lt;Bottle&gt;: bottleList
 --
-+ BottleList(ArrayList&lt;Bottle&gt; bottleList)
++ BottleList(List&lt;Bottle&gt; bottleList)
 + getBottleList(): ArrayList&lt;Bottle&gt;
-+ setBottleList(ArrayList&lt;Bottle&gt; bottleList): void
++ setBottleList(List&lt;Bottle&gt; bottleList): void
 + addBottle(Bottle bottle): void
 + size(): int
 + get(int position): Bottle
@@ -75,10 +75,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>496</y>
-      <w>256</w>
-      <h>176</h>
+      <x>445</x>
+      <y>380</y>
+      <w>160</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>BottleView
 --
@@ -92,10 +92,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>424</x>
-      <y>496</y>
-      <w>432</w>
-      <h>280</h>
+      <x>610</x>
+      <y>380</y>
+      <w>270</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>Drink
 --
@@ -104,13 +104,13 @@
 - Integer: img
 - long: id
 --
-+ Drink(String name, Bottle[] ingredients, Double[] ingredientsQty, Integer img)
-+ Drink(long id, String name, Bottle[] ingredients, Double[] ingredientsQty, Integer img)
++ Drink(String name, Map&lt;Bottle, Double&gt; ingredients, Integer img)
++ Drink(long id, String name, Map&lt;Bottle, Double&gt; ingredients, Integer img)
 + getName(): String
 + setName(String name): void
 + getIngredientText(): String
-+ getIngredientMap(): String
-+ setIngredient(String[] ingredientname, Double[] ingredientqty): void
++ getIngredientMap(): Map&lt;Bottle, Double&gt;
++ setIngredient(Map&lt;Bottle, Double&gt; ingredients): void
 + addIngredient(Bottle ingredient, Double ingredientQty): void
 + getImg(): Integer
 + setImg(Integer img): void
@@ -121,10 +121,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>568</x>
-      <y>288</y>
-      <w>344</w>
-      <h>176</h>
+      <x>700</x>
+      <y>250</y>
+      <w>215</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>DrinkAdapter
 --
@@ -143,16 +143,17 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>304</x>
-      <y>288</y>
-      <w>256</w>
-      <h>176</h>
+      <x>345</x>
+      <y>245</y>
+      <w>160</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>	MainActivity
 --
-- ArrayList&lt;Drink&gt;: drinks
-- ArrayList&lt;Bottle&gt;: bottles
+- List&lt;Drink&gt;: drinks
+- List&lt;Bottle&gt;: bottles
 - BottleList: bottleList
+- myDatabase: MyDatabase
 --
 #onCreate(Bundle savedInstanceState): void
 - createSettingsButton(): void
@@ -164,10 +165,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>288</y>
-      <w>256</w>
-      <h>176</h>
+      <x>535</x>
+      <y>245</y>
+      <w>160</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Settings
 --
@@ -179,10 +180,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
-      <y>176</y>
-      <w>120</w>
-      <h>24</h>
+      <x>485</x>
+      <y>180</y>
+      <w>75</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>Activity</panel_attributes>
     <additional_attributes/>
@@ -190,32 +191,32 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>192</y>
-      <w>144</w>
-      <h>112</h>
+      <x>535</x>
+      <y>190</y>
+      <w>90</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;160.0;70.0;160.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;160.0;70.0;160.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>192</y>
-      <w>152</w>
-      <h>112</h>
+      <x>420</x>
+      <y>190</y>
+      <w>95</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>170.0;10.0;170.0;70.0;10.0;70.0;10.0;120.0</additional_attributes>
+    <additional_attributes>170.0;10.0;170.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>872</x>
-      <y>176</y>
-      <w>120</w>
-      <h>24</h>
+      <x>890</x>
+      <y>180</y>
+      <w>75</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>BaseAdapter</panel_attributes>
     <additional_attributes/>
@@ -223,10 +224,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>728</x>
-      <y>192</y>
-      <w>192</w>
-      <h>112</h>
+      <x>800</x>
+      <y>190</y>
+      <w>120</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>220.0;10.0;220.0;80.0;10.0;80.0;10.0;120.0</additional_attributes>
@@ -234,10 +235,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>952</x>
-      <y>192</y>
-      <w>216</w>
-      <h>112</h>
+      <x>940</x>
+      <y>190</y>
+      <w>135</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0;250.0;80.0;250.0;120.0</additional_attributes>
@@ -245,12 +246,105 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
-      <y>192</y>
-      <w>24</w>
-      <h>320</h>
+      <x>515</x>
+      <y>190</y>
+      <w>15</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>45</x>
+      <y>250</y>
+      <w>270</w>
+      <h>425</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;singleton&gt;&gt;
+MyDatabase
+--
+- TAG: String
+- DATABASE_VERSION: int
+- DATABASE_NAME: String
+- TABLE_BOTTLE: String
+- COLUMN_BOTTLE_ID: String
+- COLUMN_BOTTLE_NAME: String
+- COLUMN_BOTTLE_PICTURE: String
+- COLUMN_BOTTLE_POSITION: String
+
+- TABLE_DRINKS: String
+- COLUMN_DRINKS_ID: String
+- COLUMN_DRINKS_NAME: String
+- COLUMN_DRINKS_PICTURE: String
+
+- TABLE_INGREDIENTS: String
+- COLUMN_INGREDIENTS_DRINK_ID: String
+- COLUMN_INGREDIENTS_BOTTLE_ID:String
+- COLUMN_INGREDIENTS_QUANTITY: String
+
+- ctx: Context
+- myDatabase: MyDatabase
+
+--
++ getInstance(Context context): MyDatabase
+- MyDatabase(Context context)
+
++ onCreate(SQLiteDatabase db): void
++ onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion): void
+
++ insertBottleInDatabase(Bottle bottle): long
++ insertDrinkInDatabase(Drink drink): void
+- insertIngredientsInDatabase(Drink drink): void
+
++ getBottle(long id): Bottle
++ getDrink(long id): Drink
++ retrieveIngredientsFromDrinkId(long drinkId): Map&lt;Bottle, Double&gt;
+
++ getAllBottles(): List&lt;Bottle&gt;
++ getAllDrinks(): List&lt;Drink&gt;
++ getAllIngredients(): void
+
++ getBottlesCount(): int
++ getDrinksCount(): int
+
++ updateBottle(Bottle bottle): int
++ updateDrink(Drink drink):int
++ updateRelatedIngredients(Drink drink): void
+
++ deleteBottle(Bottle bottle): void
++ deleteDrinks(Drink drink): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>360</y>
+      <w>80</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+fg=blue
+
+&lt; uses</panel_attributes>
+    <additional_attributes>10.0;100.0;140.0;100.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>350</y>
+      <w>320</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+fg=blue
+
+</panel_attributes>
+    <additional_attributes>10.0;120.0;140.0;120.0;140.0;40.0;620.0;40.0;620.0;10.0</additional_attributes>
   </element>
 </diagram>
