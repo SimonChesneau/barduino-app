@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>11</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1518</x>
-      <y>682</y>
-      <w>341</w>
-      <h>242</h>
+      <x>1128</x>
+      <y>496</y>
+      <w>360</w>
+      <h>272</h>
     </coordinates>
     <panel_attributes>Bottle
 --
 - String: bottlename
 - int: bottlePosition
 - Integer: img
+- long: id
 --
++ Bottle(String bottlename, int bottleposition, Integer img)
++ Bottle(long id, String bottlename, int bottleposition, Integer img)
 + getBottlename(): String
 + setBottlename(String bottlename): void
 + getBottleposition(): int
 + setBottleposition(int bottleposition): void
 + getImg(): Integer
 + setImg(Integer img): void
++ getId(): int
++ setId(int id): void
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1309</x>
-      <y>396</y>
-      <w>517</w>
-      <h>242</h>
+      <x>952</x>
+      <y>288</y>
+      <w>376</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>BottleAdapter
 --
@@ -49,14 +54,14 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1155</x>
-      <y>682</y>
-      <w>352</w>
-      <h>242</h>
+      <x>864</x>
+      <y>496</y>
+      <w>256</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>BottleList
 --
-- ArrayList&lt;Bottle&gt; bottleList
+- ArrayList&lt;Bottle&gt;: bottleList
 --
 + BottleList(ArrayList&lt;Bottle&gt; bottleList)
 + getBottleList(): ArrayList&lt;Bottle&gt;
@@ -70,10 +75,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>220</x>
-      <y>682</y>
-      <w>352</w>
-      <h>242</h>
+      <x>160</x>
+      <y>496</y>
+      <w>256</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>BottleView
 --
@@ -87,33 +92,39 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>583</x>
-      <y>682</y>
-      <w>561</w>
-      <h>242</h>
+      <x>424</x>
+      <y>496</y>
+      <w>432</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>Drink
 --
 - String: name
-- Map&lt;String, Double&gt;: ingredient
+- Map&lt;Bottle, Double&gt;: ingredients
 - Integer: img
+- long: id
 --
-+ Drink(String name, String[] ingredientname, Double[] ingredientqty, Integer img)
++ Drink(String name, Bottle[] ingredients, Double[] ingredientsQty, Integer img)
++ Drink(long id, String name, Bottle[] ingredients, Double[] ingredientsQty, Integer img)
 + getName(): String
 + setName(String name): void
-+ getIngredient(): String
++ getIngredientText(): String
++ getIngredientMap(): String
 + setIngredient(String[] ingredientname, Double[] ingredientqty): void
++ addIngredient(Bottle ingredient, Double ingredientQty): void
 + getImg(): Integer
-+ setImg(Integer img): void</panel_attributes>
++ setImg(Integer img): void
++ getId(): long
++ setId(long id): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>781</x>
-      <y>396</y>
-      <w>473</w>
-      <h>242</h>
+      <x>568</x>
+      <y>288</y>
+      <w>344</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>DrinkAdapter
 --
@@ -132,12 +143,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>418</x>
-      <y>396</y>
-      <w>352</w>
-      <h>242</h>
+      <x>304</x>
+      <y>288</y>
+      <w>256</w>
+      <h>176</h>
     </coordinates>
-    <panel_attributes>MainActivity
+    <panel_attributes>	MainActivity
 --
 - ArrayList&lt;Drink&gt;: drinks
 - ArrayList&lt;Bottle&gt;: bottles
@@ -154,9 +165,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>396</y>
-      <w>352</w>
-      <h>242</h>
+      <y>288</y>
+      <w>256</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>Settings
 --
@@ -168,10 +179,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>308</x>
-      <y>242</y>
-      <w>165</w>
-      <h>33</h>
+      <x>224</x>
+      <y>176</y>
+      <w>120</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Activity</panel_attributes>
     <additional_attributes/>
@@ -179,10 +190,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>418</x>
-      <y>264</y>
-      <w>198</w>
-      <h>154</h>
+      <x>304</x>
+      <y>192</y>
+      <w>144</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0;160.0;70.0;160.0;120.0</additional_attributes>
@@ -190,10 +201,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>165</x>
-      <y>264</y>
-      <w>209</w>
-      <h>154</h>
+      <x>120</x>
+      <y>192</y>
+      <w>152</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>170.0;10.0;170.0;70.0;10.0;70.0;10.0;120.0</additional_attributes>
@@ -201,10 +212,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1199</x>
-      <y>242</y>
-      <w>165</w>
-      <h>33</h>
+      <x>872</x>
+      <y>176</y>
+      <w>120</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>BaseAdapter</panel_attributes>
     <additional_attributes/>
@@ -212,10 +223,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
-      <y>264</y>
-      <w>264</w>
-      <h>154</h>
+      <x>728</x>
+      <y>192</y>
+      <w>192</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>220.0;10.0;220.0;80.0;10.0;80.0;10.0;120.0</additional_attributes>
@@ -223,10 +234,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1309</x>
-      <y>264</y>
-      <w>297</w>
-      <h>154</h>
+      <x>952</x>
+      <y>192</y>
+      <w>216</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0;250.0;80.0;250.0;120.0</additional_attributes>
@@ -234,10 +245,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>374</x>
-      <y>264</y>
-      <w>33</w>
-      <h>440</h>
+      <x>272</x>
+      <y>192</y>
+      <w>24</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;380.0</additional_attributes>
