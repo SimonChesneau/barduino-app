@@ -54,7 +54,7 @@ public class DrinkAdapter extends BaseAdapter {
         ImageView image = (ImageView) view.findViewById(R.id.image);
 
         name.setText(listDrink.get(position).getName());
-        ingredient.setText(listDrink.get(position).getIngredient());
+        ingredient.setText(listDrink.get(position).getIngredientText());
         image.setImageResource(listDrink.get(position).getImg());
 
         return view;

@@ -51,8 +51,8 @@ public class BottleAdapter extends BaseAdapter{
         final EditText bottlenumber = (EditText)view.findViewById(R.id.bottlenumber);
         ImageView image = view.findViewById(R.id.bottleimage);
 
-        bottlename.setText(listBottle.get(position).getBottlename());
-        bottlenumber.setText(String.valueOf(listBottle.get(position).getBottleposition()));
+        bottlename.setText(listBottle.get(position).getName());
+        bottlenumber.setText(String.valueOf(listBottle.get(position).getPosition()));
         image.setImageResource(listBottle.get(position).getImg());
 
 
