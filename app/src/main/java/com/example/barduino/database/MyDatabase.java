@@ -70,8 +70,8 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         // Creation bottle table Script.
         String createBottleTableScript = "CREATE TABLE " + TABLE_BOTTLE + "("
-                + COLUMN_BOTTLE_ID + " [int] PRIMARY KEY,"
-                + COLUMN_BOTTLE_NAME + " [nvarchar](255),"
+                + COLUMN_BOTTLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_BOTTLE_NAME + " TEXT,"
                 + COLUMN_BOTTLE_PICTURE + " INTEGER, "
                 + COLUMN_BOTTLE_POSITION + " INTEGER NOT NULL "
                 + ")";
@@ -83,10 +83,10 @@ public class MyDatabase extends SQLiteOpenHelper {
         Log.i(TAG, "MyDatabaseIngredient creation ... ");
 
         // Creation ingredients table Script.
-        String createIngredientsTableScript = "CREATE TABLE " + TABLE_DRINKS + "("
-                + COLUMN_INGREDIENTS_DRINK_ID + " [int],"
-                + COLUMN_INGREDIENTS_BOTTLE_ID + " [int],"
-                + COLUMN_INGREDIENTS_QUANTITY + " [decimal], "
+        String createIngredientsTableScript = "CREATE TABLE " + TABLE_INGREDIENTS + "("
+                + COLUMN_INGREDIENTS_DRINK_ID + " INTEGER,"
+                + COLUMN_INGREDIENTS_BOTTLE_ID + " INTEGER,"
+                + COLUMN_INGREDIENTS_QUANTITY + " DECIMAL, "
                 + "PRIMARY KEY(["+COLUMN_INGREDIENTS_DRINK_ID+"], ["+COLUMN_INGREDIENTS_BOTTLE_ID+"])"
                 + ")";
 
@@ -97,9 +97,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         Log.i(TAG, "MyDatabaseDrinks creation ... ");
 
         // Creation drinks table Script.
-        String createDrinksTableScript = "CREATE TABLE " + TABLE_INGREDIENTS + "("
-                + COLUMN_DRINKS_ID + " [int] PRIMARY KEY,"
-                + COLUMN_DRINKS_NAME + " [nvarchar](255), "
+        String createDrinksTableScript = "CREATE TABLE " + TABLE_DRINKS + "("
+                + COLUMN_DRINKS_ID + " INTEGER PRIMARY KEY,"
+                + COLUMN_DRINKS_NAME + " TEXT, "
                 + COLUMN_DRINKS_PICTURE + " INTEGER "
                 + ")";
 
@@ -126,25 +126,19 @@ public class MyDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertBottleInDatabase(Bottle bottle) {
-        Log.i(TAG, "MyDatabaseGrille.insertBottleInDatabase ... " + bottle.getName());
-
+    public long insertBottleInDatabase(Bottle bottle) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(COLUMN_BOTTLE_NAME, bottle.getName());
         values.put(COLUMN_BOTTLE_PICTURE, bottle.getImg());
         values.put(COLUMN_BOTTLE_POSITION, bottle.getPosition());
-
         // Inserting Row
-        long generatedId = db.insert(TABLE_BOTTLE, null, values);
-        bottle.setId(generatedId);
-
-        // Closing database connection
-        db.close();
+        long id = db.insert(TABLE_BOTTLE, null, values);
+        Log.d(TAG,"Inserted id : "+ id);
+        return id;
     }
 
-    public void insertDrinksInDatabase(Drink drink) {
+    public void insertDrinkInDatabase(Drink drink) {
         Log.i(TAG, "MyDatabase.insertDrinksInDatabase ... " + drink.getName());
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -157,12 +151,15 @@ public class MyDatabase extends SQLiteOpenHelper {
         long generatedId = db.insert(TABLE_DRINKS, null, values);
         drink.setId(generatedId);
 
+        if(drink.getIngredientMap() != null){
+            insertIngredientsInDatabase(drink);
+        }
 
         // Closing database connection
         db.close();
     }
 
-    public void insertIngredientsInDatabase(Drink drink) {
+    private void insertIngredientsInDatabase(Drink drink) {
         Log.i(TAG, "MyDatabase.insertIngredientsInDatabase ... " + drink.getName());
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -179,7 +176,7 @@ public class MyDatabase extends SQLiteOpenHelper {
             values.put(COLUMN_INGREDIENTS_QUANTITY, QuantityNeeded);
 
             // Inserting Row
-            db.insert(TABLE_DRINKS, null, values);
+            db.insert(TABLE_INGREDIENTS, null, values);
         }
 
         // Closing database connection
@@ -269,7 +266,7 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         List<Bottle> bottleList = new ArrayList<Bottle>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_BOTTLE;
+        String selectQuery = "SELECT " + COLUMN_BOTTLE_ID + ", " + COLUMN_BOTTLE_NAME + ", " + COLUMN_BOTTLE_POSITION + ", " + COLUMN_BOTTLE_PICTURE + " FROM " + TABLE_BOTTLE;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -278,7 +275,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Bottle bottle = new Bottle(cursor.getLong(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3));
-
                 // Adding bottle to list
                 bottleList.add(bottle);
             } while (cursor.moveToNext());
@@ -413,6 +409,30 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void getAllIngredients(){
+        Log.i(TAG, "MyDatabase.getAllIngredients ... " );
 
+        List<Drink> IngredientList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_INGREDIENTS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Map<Bottle, Double> ingredients = retrieveIngredientsFromDrinkId(cursor.getLong(0));
+                Drink drink = new Drink( cursor.getLong(0),
+                        cursor.getString(1),
+                        ingredients,
+                        cursor.getInt(2));
+
+                // Adding bottle to list
+                IngredientList.add(drink);
+            } while (cursor.moveToNext());
+        }
+
+    }
 }
 
