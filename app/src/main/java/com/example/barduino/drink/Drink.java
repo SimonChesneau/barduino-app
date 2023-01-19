@@ -1,22 +1,51 @@
 package com.example.barduino.drink;
 
+import com.example.barduino.R;
+import com.example.barduino.bottle.Bottle;
+
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Drink {
 
     private String name;
-    private Map<String, Double> ingredient;
+    private Map<Bottle, Double> ingredients;
+    private String[] ingredientsName; //Hardcoded
     private Integer img;
+    private long id;
 
-    public Drink(String name, String[] ingredientname, Double[] ingredientqty, Integer img) {
+    public Drink(String name, List<Bottle> ingredients, Double[] ingredientsQty, Integer img) {
         this.name = name;
-        this.ingredient = new LinkedHashMap<String, Double>();
-        for(int i = 0; i < ingredientname.length; i++){
-            this.ingredient.put(ingredientname[i],ingredientqty[i]);
+        this.ingredients = new LinkedHashMap<Bottle, Double>();
+        for(int i = 0; i < ingredients.size(); i++){
+            this.ingredients.put(ingredients.get(i),ingredientsQty[i]);
         }
 
         this.img = img;
+    }
+
+    public Drink(String name, String[] ingredientsName, Double[] ingredientsQty, Integer img) {
+        this.name = name;
+        this.ingredients = new LinkedHashMap<Bottle, Double>();
+        for(int i = 0; i < ingredientsName.length; i++){
+            Bottle bottle = new Bottle(ingredientsName[i], 1, R.drawable.bottle_vodka);
+            this.ingredients.put(bottle,ingredientsQty[i]);
+        }
+
+        this.img = img;
+    }
+
+    public Drink(long id, String name, List<Bottle> ingredients, Double[] ingredientsQty, Integer img) {
+        this(name, ingredients, ingredientsQty, img); // We call the other constructor
+        this.id = id; //And we add the id set
+    }
+
+    public Drink(long id, String name, Map<Bottle, Double> ingredients, Integer img) {
+        setId(id);
+        setName(name);
+        setIngredient(ingredients);
+        setImg(img);
     }
 
     public String getName() {
@@ -27,20 +56,32 @@ public class Drink {
         this.name = name;
     }
 
-    public String getIngredient() {
+    public String getIngredientText() {
         String ret = "";
-        for(Map.Entry<String, Double> entry : this.ingredient.entrySet()) {
-            String key = entry.getKey();
+        for(Map.Entry<Bottle, Double> entry : this.ingredients.entrySet()) {
+            Bottle key = entry.getKey();
             Double value = entry.getValue();
-            ret += key+" "+value+"cl, ";
+            ret += key.getName()+" "+value+"cl, ";
         }
         return ret;
     }
 
-    public void setIngredient(String[] ingredientname, Double[] ingredientqty) {
-        for(int i = 0; i < ingredientname.length; i++){
-            this.ingredient.put(ingredientname[i],ingredientqty[i]);
+    public Map<Bottle, Double> getIngredientMap() {
+        return ingredients;
+    }
+
+    public void setIngredient(Bottle[] ingredients, Double[] ingredientsQty) {
+        for(int i = 0; i < ingredients.length; i++){
+            this.ingredients.put(ingredients[i],ingredientsQty[i]);
         }
+    }
+
+    public void setIngredient(Map<Bottle, Double> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public void addIngredient(Bottle ingredient, Double ingredientQty) {
+            this.ingredients.put(ingredient,ingredientQty);
     }
 
     public Integer getImg() {
@@ -51,4 +92,11 @@ public class Drink {
         this.img = img;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
