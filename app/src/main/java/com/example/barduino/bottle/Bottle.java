@@ -2,9 +2,9 @@ package com.example.barduino.bottle;
 
 
 public class Bottle {
-    private long id;
-    private String bottlename;
-    private int bottleposition;
+    private long id = 1;
+    private String name;
+    private int position;
     private Integer img;
 
     public Bottle(String bottlename, int bottleposition, Integer img) {
@@ -19,19 +19,19 @@ public class Bottle {
     }
 
     public String getName() {
-        return bottlename;
+        return name;
     }
 
     public void setName(String bottlename) {
-        this.bottlename = bottlename;
+        this.name = bottlename;
     }
 
     public int getPosition() {
-        return bottleposition;
+        return position;
     }
 
     public void setPosition(int bottleposition) {
-        this.bottleposition = bottleposition;
+        this.position = bottleposition;
     }
 
     public Integer getImg() {
@@ -51,6 +51,6 @@ public class Bottle {
     }
 
     public String toString(){
-        return "Bottlename: "+bottlename+"Bottleposition: "+bottleposition;
+        return "Bottlename: "+name+"Bottleposition: "+position;
     }
 }
