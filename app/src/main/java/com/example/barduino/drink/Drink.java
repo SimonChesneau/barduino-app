@@ -11,9 +11,26 @@ public class Drink {
 
     private String name;
     private Map<Bottle, Double> ingredients;
-    private String[] ingredientsName; //Hardcoded
     private Integer img;
     private long id;
+
+
+
+    public Drink(String name, Map<Bottle, Double> ingredients, Integer img) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.img = img;
+    }
+
+    public Drink(long id, String name, Map<Bottle, Double> ingredients, Integer img) {
+        setId(id);
+        setName(name);
+        setIngredient(ingredients);
+        setImg(img);
+    }
+
+    /*
+    Anciens constructeurs utilisant des array plutot que des maps
 
     public Drink(String name, List<Bottle> ingredients, Double[] ingredientsQty, Integer img) {
         this.name = name;
@@ -22,12 +39,6 @@ public class Drink {
             this.ingredients.put(ingredients.get(i),ingredientsQty[i]);
         }
 
-        this.img = img;
-    }
-
-    public Drink(String name, Map<Bottle, Double> ingredients, Integer img) {
-        this.name = name;
-        this.ingredients = ingredients;
         this.img = img;
     }
 
@@ -46,13 +57,7 @@ public class Drink {
         this(name, ingredients, ingredientsQty, img); // We call the other constructor
         this.id = id; //And we add the id set
     }
-
-    public Drink(long id, String name, Map<Bottle, Double> ingredients, Integer img) {
-        setId(id);
-        setName(name);
-        setIngredient(ingredients);
-        setImg(img);
-    }
+    */
 
     public String getName() {
         return name;
@@ -76,11 +81,14 @@ public class Drink {
         return ingredients;
     }
 
+    /*
+    Old getter using array instead of Maps
     public void setIngredient(Bottle[] ingredients, Double[] ingredientsQty) {
         for(int i = 0; i < ingredients.length; i++){
             this.ingredients.put(ingredients[i],ingredientsQty[i]);
         }
     }
+    */
 
     public void setIngredient(Map<Bottle, Double> ingredients) {
         this.ingredients = ingredients;
