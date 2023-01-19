@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.barduino.bottle.Bottle;
 import com.example.barduino.bottle.BottleList;
+import com.example.barduino.database.MyDatabase;
 import com.example.barduino.drink.Drink;
 import com.example.barduino.drink.DrinkAdapter;
 import com.google.gson.Gson;
@@ -25,11 +26,14 @@ public class MainActivity extends Activity {
     private final ArrayList<Drink> drinks = new ArrayList<Drink>();
     private final ArrayList<Bottle> bottles = new ArrayList<Bottle>();
     private BottleList bottleList = null;
+    private MyDatabase myDatabase= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myDatabase = MyDatabase.getInstance(this); //Retrieving a database instance
 
         // TODO: This part is Hardcoded and needs to be done using a database
         setUpBottles(); //Create all the bottles and add them to the list
@@ -37,6 +41,7 @@ public class MainActivity extends Activity {
 
         setUpDrinksLayout(); //Add all the drinks to the layout and their onClick actions
         createSettingsButton(); //Add the settings button on the main screen
+
     }
 
     private void createSettingsButton() {
@@ -100,5 +105,9 @@ public class MainActivity extends Activity {
         bottles.add(new Bottle("Whiskey", 5,R.drawable.bottle_whiskey));
         bottles.add(new Bottle("Gin", 6,R.drawable.bottle_gin));
         bottleList= new BottleList(bottles);
+
+        for(Bottle bottle : bottles){
+            myDatabase.insertBottleInDatabase(bottle);
+        }
     }
 }
